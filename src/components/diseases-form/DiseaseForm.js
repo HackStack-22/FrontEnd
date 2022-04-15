@@ -23,7 +23,8 @@ export default function DiseaseForm(props) {
             if (index === 0)
                 fields = "{"
 
-            fields = fields + '"' + formName[index] + '":' + '"' + element.value
+            // fields = fields + '"' + formName[index] + '":"' + element.value;
+            fields = `${fields}"${formName[index]}":"${element.value}`
             if (index !== allInputs.length - 1)
                 fields = fields + '",'
 
@@ -71,7 +72,7 @@ export default function DiseaseForm(props) {
                 {fname.map((ele, index) => {
                     if (ftype[index] !== 'option') {
                         return (
-                            <div className='disease-form-input'>
+                            <div key={index} className='disease-form-input'>
                                 <h2>{ele}</h2>
                                 <input name={ele} type={ftype[index]} placeholder={ele} />
                             </div>
@@ -79,7 +80,7 @@ export default function DiseaseForm(props) {
                     } else {
                         x += 1
                         return (
-                            <div className='disease-form-input'>
+                            <div key={index} className='disease-form-input'>
                                 <h2>{ele}</h2>
                                 <label>{option[x - 1]}</label>
                                 <input name={ele} type='text' placeholder={ele} />
